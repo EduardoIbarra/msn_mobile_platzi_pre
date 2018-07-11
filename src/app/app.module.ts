@@ -10,6 +10,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 import {ConversationPage} from "../pages/conversation/conversation";
+import {UserService} from "../services/user";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {ConversationPage} from "../pages/conversation/conversation";
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    UserService
   ]
 })
 export class AppModule {}
