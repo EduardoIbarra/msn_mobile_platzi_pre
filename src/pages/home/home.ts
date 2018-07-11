@@ -41,6 +41,24 @@ export class HomePage {
     l = {};
     l = [];
     console.log(l); // output: []
+
+    enum Direction {
+      Up = 1,
+      Down = 2,
+      Left = 3,
+      Right = 4
+    }
+    console.log(Direction); // Output: {1: "Up", 2: "Down", 3: "Left", 4: "Right", Up: 1, Down: 2, Left: 3, Right: 4}
+    console.log(Direction.Down); // Output: 2
+
+    enum DirectionString {
+      Up = "UP",
+      Down = "DOWN",
+      Left = "LEFT",
+      Right = "RIGHT"
+    }
+    console.log(DirectionString.Down); // Output: DOMN
+
   }
 
 
