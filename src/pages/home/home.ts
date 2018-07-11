@@ -28,12 +28,22 @@ export class HomePage {
 
     let i = ['hello', 3, null, {}, undefined];
     console.log(i);  // output: ["hello", 3, null, {…}, undefined]
+
     let j: boolean [] = [true, false];
     console.log(j); // output: [true, false]
+
     let k: object [] = [{}, {}];
     console.log(k); // output: [{}, {}]
 
+    let l: any = 1;
+    l = "1";
+    l = true;
+    l = {};
+    l = [];
+    console.log(l); // output: []
   }
+
+
   goToLogin() {
     this.navCtrl.push(LoginPage)
   }
