@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import {ConversationPage} from "../conversation/conversation";
+import {Status, User} from "../../interfaces/user";
 
 @Component({
   selector: 'page-home',
@@ -59,6 +60,19 @@ export class HomePage {
     }
     console.log(DirectionString.Down); // Output: DOMN
 
+    let eduardo: User = {
+      name: 'Eduardo',
+      age: 28,
+      active: true,
+      status: Status.AppearOffline
+    };
+    let freddy: User = {
+      name: 'Freddy',
+      age: 19,
+      active: true,
+      status: Status.Online
+    };
+    console.log(eduardo, freddy); // Output: {name: "Eduardo", age: 28, active: true, status: "Appear Offline"} {name: "Freddy", age: 19, active: true, status: "Online"}
   }
 
 
