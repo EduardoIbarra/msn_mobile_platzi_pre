@@ -3,6 +3,9 @@ import {Status, User} from "../interfaces/user";
 
 @Injectable()
 export class UserService {
+  constructor() {
+    console.log(Status);
+  }
   private users: User[] = [
     {
       name: 'Eduardo',
