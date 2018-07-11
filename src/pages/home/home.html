@@ -10,7 +10,7 @@
 <ion-content padding>
   <ion-list>
     <ng-container *ngFor="let user of users">
-      <ion-item *ngIf="user.status !== 'Offline'">
+      <ion-item *ngIf="user.status !== 'Offline'" (click)="goToConversation(user)">
         {{ user.name }} - {{user.status}}
       </ion-item>
     </ng-container>

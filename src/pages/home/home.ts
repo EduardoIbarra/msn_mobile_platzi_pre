@@ -29,8 +29,8 @@ export class HomePage {
   goToLogin() {
     this.navCtrl.push(LoginPage)
   }
-  goToConversation() {
-    this.navCtrl.push(ConversationPage);
+  goToConversation(user) {
+    this.navCtrl.push(ConversationPage, {data: user});
   }
 
 }
