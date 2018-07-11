@@ -8,15 +8,11 @@
 </ion-header>
 
 <ion-content padding>
-  <p>{{price}}</p>
-  <p>{{date}}</p>
-  <p>{{yuliana}}</p>
-  <hr />
-  <p>{{price | number: '1.2-2'}}</p>
-  <p>{{date | date: 'medium'}}</p>
-  <p>{{yuliana | json}}</p>
+  <div padding>
+    <ion-input type="text" [(ngModel)]="query" placeholder="Buscar..."></ion-input>
+  </div>
   <ion-list>
-    <ng-container *ngFor="let user of users">
+    <ng-container *ngFor="let user of users | search: query">
       <ion-item *ngIf="user.status !== 'Offline'" (click)="goToConversation(user)">
         {{ user.name }} - {{user.status}}
       </ion-item>

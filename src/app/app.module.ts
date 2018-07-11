@@ -11,6 +11,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import {LoginPage} from "../pages/login/login";
 import {ConversationPage} from "../pages/conversation/conversation";
 import {UserService} from "../services/user";
+import {SearchPipe} from "../pipes/search";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import {UserService} from "../services/user";
     HomePage,
     ListPage,
     LoginPage,
-    ConversationPage
+    ConversationPage,
+    SearchPipe
   ],
   imports: [
     BrowserModule,

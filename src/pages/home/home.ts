@@ -11,13 +11,12 @@ import {Status, User} from "../../interfaces/user";
 })
 export class HomePage {
   users: User[];
-  price: number = 14.484748;
-  date: number = Date.now();
+  query: string;
   yuliana: User = {
     name: 'Yuliana',
     age: 26,
     active: false,
-    status: Status.Offline
+    status: Status.Online
   };
   constructor(public navCtrl: NavController, public userService: UserService) {
     this.users = this.userService.get();
