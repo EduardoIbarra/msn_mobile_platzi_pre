@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the LoginPage page.
@@ -8,7 +9,6 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
  * Ionic pages and navigation.
  */
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -20,6 +20,12 @@ export class LoginPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
+  }
+  goToHome() {
+    this.navCtrl.push(HomePage);
+  }
+  backToHome() {
+    this.navCtrl.pop();
   }
 
 }
