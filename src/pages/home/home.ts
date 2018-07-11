@@ -11,18 +11,17 @@ import {Status, User} from "../../interfaces/user";
 })
 export class HomePage {
   users: User[];
+  price: number = 14.484748;
+  date: number = Date.now();
+  yuliana: User = {
+    name: 'Yuliana',
+    age: 26,
+    active: false,
+    status: Status.Offline
+  };
   constructor(public navCtrl: NavController, public userService: UserService) {
     this.users = this.userService.get();
-    console.log(this.users);
-
-    let yuliana: User = {
-      name: 'Yuliana',
-      age: 26,
-      active: false,
-      status: Status.Offline
-    };
-    this.userService.add(yuliana);
-    console.log(this.users);
+    this.userService.add(this.yuliana);
   }
 
 

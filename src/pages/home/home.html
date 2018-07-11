@@ -8,6 +8,13 @@
 </ion-header>
 
 <ion-content padding>
+  <p>{{price}}</p>
+  <p>{{date}}</p>
+  <p>{{yuliana}}</p>
+  <hr />
+  <p>{{price | number: '1.2-2'}}</p>
+  <p>{{date | date: 'medium'}}</p>
+  <p>{{yuliana | json}}</p>
   <ion-list>
     <ng-container *ngFor="let user of users">
       <ion-item *ngIf="user.status !== 'Offline'" (click)="goToConversation(user)">
