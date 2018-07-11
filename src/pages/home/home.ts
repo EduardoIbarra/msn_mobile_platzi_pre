@@ -19,7 +19,7 @@ export class HomePage {
       name: 'Yuliana',
       age: 26,
       active: false,
-      status: Status.Busy
+      status: Status.Offline
     };
     this.userService.add(yuliana);
     console.log(this.users);

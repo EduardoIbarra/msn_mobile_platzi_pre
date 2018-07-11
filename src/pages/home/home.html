@@ -9,8 +9,10 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let user of users">
-      {{ user.name }} - {{user.status}}
-    </ion-item>
+    <ng-container *ngFor="let user of users">
+      <ion-item *ngIf="user.status !== 'Offline'">
+        {{ user.name }} - {{user.status}}
+      </ion-item>
+    </ng-container>
   </ion-list>
 </ion-content>
