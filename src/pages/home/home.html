@@ -40,7 +40,7 @@
     </div>
     <div class="contact-list-item" *ngFor="let user of users | search: query" (click)="goToConversation(user)">
       <img src="assets/img/{{getIconByStatus(user.status)}}" class="status">
-      <b>{{user.name}}</b> <i class="msnicon brb"></i>
+      <b>{{user.nick}}</b> <i class="msnicon brb"></i>
       <small *ngIf="user.status">{{user.status}}</small>
     </div>
   </div>

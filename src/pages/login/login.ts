@@ -22,6 +22,7 @@ export class LoginPage {
   email: string;
   status: Status;
   nick: string;
+  operation: string = 'login';
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, private toastCtrl: ToastController) {
   }
   registerWithEmail() {
@@ -44,6 +45,7 @@ export class LoginPage {
           position: 'bottom'
         });
         toast.present();
+        this.operation = 'login';
         console.log(data);
       }).catch((error) => {
         alert('Ocurrió un error');
@@ -53,11 +55,26 @@ export class LoginPage {
       console.log(error);
     });
   }
+  loginWithEmail() {
+    this.authService.loginWithEmail(this.email, this.password).then((data) => {
+      console.log(data);
+      let toast = this.toastCtrl.create({
+        message: 'Bienvenido',
+        duration: 3000,
+        position: 'bottom'
+      });
+      toast.present();
+      this.navCtrl.setRoot(HomePage);
+    }).catch((error) => {
+      alert('Ocurrió un error');
+      console.log(error);
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }
   goToHome() {
-    this.navCtrl.push(HomePage);
+    this.navCtrl.setRoot(HomePage);
   }
   backToHome() {
     this.navCtrl.pop();

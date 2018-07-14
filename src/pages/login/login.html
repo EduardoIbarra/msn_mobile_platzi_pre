@@ -12,7 +12,7 @@
   </div>
 
   <ion-list>
-    <ion-item>
+    <ion-item *ngIf="operation === 'register'">
       <ion-label fixed>Nick</ion-label>
       <ion-input type="text" [(ngModel)]="nick"></ion-input>
     </ion-item>
@@ -24,7 +24,7 @@
       <ion-label fixed>Password</ion-label>
       <ion-input type="password" [(ngModel)]="password"></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf="operation === 'register'">
       <ion-label fixed>Repetir</ion-label>
       <ion-input type="password" [(ngModel)]="password2"></ion-input>
     </ion-item>
@@ -43,10 +43,10 @@
     </ion-item>
   </ion-list>
   <div padding>
-    <span>Ya tienes cuenta? Click Aquí</span>
-    <span>Aun no tienes cuenta? Click Aquí</span>
+    <span *ngIf="operation === 'register'">Ya tienes cuenta? <a (click)="operation = 'login'"><b>Click Aquí</b></a></span>
+    <span *ngIf="operation === 'login'">Aun no tienes cuenta? <a (click)="operation = 'register'"><b>Click Aquí</b></a></span>
     <hr />
-    <button ion-button block>Ingresar</button>
-    <button ion-button (click)="registerWithEmail()" block>Registrarse</button>
+    <button *ngIf="operation === 'login'" ion-button  (click)="loginWithEmail()" block>Ingresar</button>
+    <button *ngIf="operation === 'register'" ion-button (click)="registerWithEmail()" block>Registrarse</button>
   </div>
 </ion-content>

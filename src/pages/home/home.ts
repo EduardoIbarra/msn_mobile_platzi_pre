@@ -13,14 +13,6 @@ export class HomePage {
   users: User[];
   query: string;
   status = Status;
-  yuliana: User = {
-    nick: 'Yuliana',
-    age: 26,
-    active: false,
-    status: Status.Online,
-    uid: Date.now(),
-    email: 'my_email@mail.com'
-  };
   constructor(public navCtrl: NavController, public userService: UserService) {
     const usersObservable = this.userService.get();
     usersObservable.valueChanges().subscribe((data: User[]) => {
@@ -29,7 +21,6 @@ export class HomePage {
       alert('Ocurrió un error');
       console.log(error);
     });
-    this.userService.add(this.yuliana);
   }
 
 
