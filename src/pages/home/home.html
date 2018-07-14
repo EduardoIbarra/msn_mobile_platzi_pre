@@ -38,10 +38,8 @@
       <fa name="chevron-down"></fa>
       <b>Amigos ({{users.length}}/{{users.length}})</b>
     </div>
-    <div class="contact-list-item" *ngFor="let user of users | search: query" (click)="goToConversation(user)"
-         [ngClass]="{'contact-offline': user.status == status.Offline || user.status == status.AppearOffline}"
-         [ngStyle]="{'background-color': user.status == status.Offline || user.status == status.AppearOffline ? 'red' : 'green' }">
-      <img src="assets/img/logo_live_online.png" class="status">
+    <div class="contact-list-item" *ngFor="let user of users | search: query" (click)="goToConversation(user)">
+      <img src="assets/img/{{getIconByStatus(user.status)}}" class="status">
       <b>{{user.name}}</b> <i class="msnicon brb"></i>
       <small *ngIf="user.status">{{user.status}}</small>
     </div>

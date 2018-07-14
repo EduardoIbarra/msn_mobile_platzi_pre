@@ -17,7 +17,7 @@ export class UserService {
       name: 'Freddy',
       age: 19,
       active: true,
-      status: Status.Online
+      status: Status.Busy
     }
   ];
   get() {
