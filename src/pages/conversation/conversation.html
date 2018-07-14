@@ -1,19 +1,49 @@
-<!--
-  Generated template for the ConversationPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>conversation</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title *ngIf="user">
+      <span class="userName">{{user.name}}</span> ({{user.status}})
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <div class="bgWhite" margin padding>
+    <div class="messageGroup">
+      <ng-container>
 
-<ion-content padding>
-  <p>{{user.name}}, {{user.age}} años</p>
-  <p>{{user.status}}</p>
+      </ng-container>
+    </div>
+  </div>
+
+  <ion-fab right middle>
+    <button ion-fab><ion-icon name="send"></ion-icon></button>
+    <ion-fab-list side="top">
+      <button outline ion-fab>
+        <ion-label>Enviar Zumbido</ion-label>
+        <img src="assets/img/zumbido.png" alt="">
+      </button>
+    </ion-fab-list>
+    <ion-fab-list side="bottom">
+      <button color="dark" ion-fab>
+        <ion-label>Enviar Foto</ion-label>
+        <ion-icon name="camera"></ion-icon></button>
+      <button color="dark" ion-fab>
+        <ion-label>Enviar desde Album</ion-label>
+        <ion-icon name="images"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-input type="text" class="footbarInput" autofocus></ion-input>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <ion-icon name="send"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
