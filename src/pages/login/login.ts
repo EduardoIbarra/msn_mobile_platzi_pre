@@ -70,6 +70,43 @@ export class LoginPage {
       console.log(error);
     })
   }
+  facebookAuth() {
+    this.authService.facebookAuth().then((data) => {
+      console.log(data);
+      const user: User = {
+        nick: data.user.displayName,
+        email: data.user.email,
+        status: Status.Online,
+        uid: data.user.uid,
+        active: true
+      };
+      if(data.additionalUserInfo.isNewUser) {
+        this.userService.add(user).then((data) => {
+          let toast = this.toastCtrl.create({
+            message: 'Conectado a Facebook con éxito',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          this.navCtrl.push(HomePage);
+        }).catch((error) => {
+          alert('Ocurrió un error');
+          console.log(error);
+        });
+      }else {
+        let toast = this.toastCtrl.create({
+          message: 'Facebook Login Exitoso',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+        this.navCtrl.push(HomePage);
+      }
+    }).catch((error) => {
+      alert('Ocurrió un error');
+      console.log(error);
+    })
+  }
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
   }

@@ -48,5 +48,7 @@
     <hr />
     <button *ngIf="operation === 'login'" ion-button  (click)="loginWithEmail()" block>Ingresar</button>
     <button *ngIf="operation === 'register'" ion-button (click)="registerWithEmail()" block>Registrarse</button>
+    <hr />
+    <button ion-button (click)="facebookAuth()" block>Ingresar con Facebook</button>
   </div>
 </ion-content>
