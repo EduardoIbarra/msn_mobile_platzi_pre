@@ -10,4 +10,5 @@ export interface User {
   age: number;
   active: boolean;
   status: Status;
+  uid: any;
 }

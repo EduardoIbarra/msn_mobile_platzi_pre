@@ -17,10 +17,17 @@ export class HomePage {
     name: 'Yuliana',
     age: 26,
     active: false,
-    status: Status.Online
+    status: Status.Online,
+    uid: Date.now()
   };
   constructor(public navCtrl: NavController, public userService: UserService) {
-    this.users = this.userService.get();
+    const usersObservable = this.userService.get();
+    usersObservable.valueChanges().subscribe((data: User[]) => {
+      this.users = data;
+    }, (error) => {
+      alert('Ocurrió un error');
+      console.log(error);
+    });
     this.userService.add(this.yuliana);
   }
 

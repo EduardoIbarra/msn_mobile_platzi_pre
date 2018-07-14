@@ -33,7 +33,7 @@
     <ion-input type="search" id="searchField" placeholder="Busca entre tus Contactos" [(ngModel)]="query"></ion-input>
   </div>
 
-  <div>
+  <div *ngIf="users">
     <div>
       <fa name="chevron-down"></fa>
       <b>Amigos ({{users.length}}/{{users.length}})</b>

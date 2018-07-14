@@ -1,29 +1,15 @@
 import {Injectable} from "@angular/core";
-import {Status, User} from "../interfaces/user";
+import {User} from "../interfaces/user";
+import {AngularFireDatabase} from "angularfire2/database";
 
 @Injectable()
 export class UserService {
-  constructor() {
-    console.log(Status);
+  constructor(private angularFireDataBase: AngularFireDatabase) {
   }
-  private users: User[] = [
-    {
-      name: 'Eduardo',
-      age: 28,
-      active: true,
-      status: Status.AppearOffline
-    },
-    {
-      name: 'Freddy',
-      age: 19,
-      active: true,
-      status: Status.Busy
-    }
-  ];
   get() {
-    return this.users;
+    return this.angularFireDataBase.list('users/');
   }
   add(user: User) {
-    this.users.push(user);
+    return this.angularFireDataBase.object('/users/' + user.uid).set(user);
   }
 }
