@@ -38,10 +38,10 @@
       <fa name="chevron-down"></fa>
       <b>Amigos ({{users.length}}/{{users.length}})</b>
     </div>
-    <div class="contact-list-item" *ngFor="let u of users | search: query">
+    <div class="contact-list-item" *ngFor="let user of users | search: query" (click)="goToConversation(user)">
       <img src="assets/img/logo_live_online.png" class="status">
-      <b>{{u.name}}</b> <i class="msnicon brb"></i>
-      <small *ngIf="u.status">{{u.status}}</small>
+      <b>{{user.name}}</b> <i class="msnicon brb"></i>
+      <small *ngIf="user.status">{{user.status}}</small>
     </div>
   </div>
 </ion-content>
