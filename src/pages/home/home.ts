@@ -12,6 +12,7 @@ import {Status, User} from "../../interfaces/user";
 export class HomePage {
   users: User[];
   query: string;
+  status = Status;
   yuliana: User = {
     name: 'Yuliana',
     age: 26,
