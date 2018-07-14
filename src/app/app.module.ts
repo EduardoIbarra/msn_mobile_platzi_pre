@@ -12,6 +12,7 @@ import {LoginPage} from "../pages/login/login";
 import {ConversationPage} from "../pages/conversation/conversation";
 import {UserService} from "../services/user";
 import {SearchPipe} from "../pipes/search";
+import {AngularFontAwesomeModule} from "angular-font-awesome";
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {SearchPipe} from "../pipes/search";
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    AngularFontAwesomeModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

@@ -5,6 +5,21 @@
   background-color: white;
   background-position-y: 35px;
 }
+.avatarFrameonline {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d2ff6b+0,81ff3d+50,0cff00+51,0dbc03+100 */
+  background: #d2ff6b; /* Old browsers */
+  background: -moz-linear-gradient(top, #d2ff6b 0%, #81ff3d 50%, #0cff00 51%, #0dbc03 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #d2ff6b 0%,#81ff3d 50%,#0cff00 51%,#0dbc03 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #d2ff6b 0%,#81ff3d 50%,#0cff00 51%,#0dbc03 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2ff6b', endColorstr='#0dbc03',GradientType=0 ); /* IE6-9 */
+  text-align: center;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  -webkit-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+}
 .avatarFrameoffline {
   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,eae5e5+45,c1bdbd+47,bab6b6+100 */
   background: #ffffff; /* Old browsers */
@@ -19,4 +34,52 @@
   -webkit-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
   -moz-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
   box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+}
+.avatarFrameaway {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffb76b+0,ffa73d+50,ff7c00+51,ff7f04+100;Orange+Gloss */
+  background: #ffb76b; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffb76b 0%, #ffa73d 50%, #ff7c00 51%, #ff7f04 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffb76b 0%,#ffa73d 50%,#ff7c00 51%,#ff7f04 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffb76b 0%,#ffa73d 50%,#ff7c00 51%,#ff7f04 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffb76b', endColorstr='#ff7f04',GradientType=0 ); /* IE6-9 */
+  text-align: center;
+  padding: 6px;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  -webkit-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+}
+.avatarFramebusy {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ff926b+0,ff5a3d+50,ff0000+51,c10303+100 */
+  background: #ff926b; /* Old browsers */
+  background: -moz-linear-gradient(top, #ff926b 0%, #ff5a3d 50%, #ff0000 51%, #c10303 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ff926b 0%,#ff5a3d 50%,#ff0000 51%,#c10303 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ff926b 0%,#ff5a3d 50%,#ff0000 51%,#c10303 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff926b', endColorstr='#c10303',GradientType=0 ); /* IE6-9 */
+  text-align: center;
+  padding: 6%;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  -webkit-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+}
+.avatarFrameappear_offline {
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,eae5e5+45,c1bdbd+47,bab6b6+100 */
+  background: #ffffff; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #eae5e5 45%, #c1bdbd 47%, #bab6b6 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#eae5e5 45%,#c1bdbd 47%,#bab6b6 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #ffffff 0%,#eae5e5 45%,#c1bdbd 47%,#bab6b6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#bab6b6',GradientType=0 ); /* IE6-9 */
+  text-align: center;
+  padding: 6%;
+  border-radius: 5px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  -webkit-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+  box-shadow: 3px 3px 21px 1px rgba(0,0,0,0.75);
+}
+.icon-in-button {
+  width: 30px;
 }

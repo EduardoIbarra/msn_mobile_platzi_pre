@@ -4,19 +4,44 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal">
+        <img src="assets/img/logo_live_add.png" class="icon-in-button">
+      </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-icon name="heart"></ion-icon>
-  <div padding>
-    <ion-input type="text" [(ngModel)]="query" placeholder="Buscar..."></ion-input>
+<ion-content padding class="backgroundAmsnImg bluewhitebluebg">
+  <ion-grid id="homeMeContainer">
+    <ion-row>
+      <ion-col col-3>
+        <div class="avatarFrameonline">
+          <img src="assets/img/generic_avatar.png" class="avatarImage img-fluid">
+        </div>
+      </ion-col>
+      <ion-col col-9 padding>
+        Nick<br />
+        <span>Subnick</span>
+        <br />
+        <small>eduardo@gobae.com</small>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div class="searchBoxContainer">
+    <ion-input type="search" id="searchField" placeholder="Busca entre tus Contactos" [(ngModel)]="query"></ion-input>
   </div>
-  <ion-list>
-    <ng-container *ngFor="let user of users | search: query">
-      <ion-item *ngIf="user.status !== 'Offline'" (click)="goToConversation(user)">
-        {{ user.name }} - {{user.status}}
-      </ion-item>
-    </ng-container>
-  </ion-list>
+
+  <div>
+    <div>
+      <fa name="chevron-down"></fa>
+      <b>Amigos ({{users.length}}/{{users.length}})</b>
+    </div>
+    <div class="contact-list-item" *ngFor="let u of users | search: query">
+      <img src="assets/img/logo_live_online.png" class="status">
+      <b>{{u.name}}</b> <i class="msnicon brb"></i>
+      <small *ngIf="u.status">{{u.status}}</small>
+    </div>
+  </div>
 </ion-content>

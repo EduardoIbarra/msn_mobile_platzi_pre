@@ -1,3 +1,27 @@
 page-home {
-
+  #homeMeContainer {
+    border-bottom: 1px solid white;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    font-size: 1.2em;
+    text-shadow: 1px 2px 5px white;
+  }
+  .searchBoxContainer{
+    border: 1px solid #9dd8f4 !important;
+    background: #3bb2ea;
+    padding: 5px;
+    margin-bottom: 10px;
+  }
+  #searchField {
+    background-color: #ffffffd9;
+    padding: 0px 5px;
+  }
+  .contact-list-item {
+    margin-bottom: 3px;
+    cursor: pointer;
+  }
+  .contact-list-item > .status {
+    width: 20px;
+    margin-right: 15px;
+  }
 }
