@@ -14,11 +14,12 @@ export class HomePage {
   query: string;
   status = Status;
   yuliana: User = {
-    name: 'Yuliana',
+    nick: 'Yuliana',
     age: 26,
     active: false,
     status: Status.Online,
-    uid: Date.now()
+    uid: Date.now(),
+    email: 'my_email@mail.com'
   };
   constructor(public navCtrl: NavController, public userService: UserService) {
     const usersObservable = this.userService.get();
