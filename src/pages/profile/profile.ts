@@ -3,6 +3,7 @@ import {NavController, NavParams, ToastController} from 'ionic-angular';
 import {AuthService} from "../../services/auth";
 import {UserService} from "../../services/user";
 import {Status, User} from "../../interfaces/user";
+import {Camera, CameraOptions} from '@ionic-native/camera';
 
 /**
  * Generated class for the ProfilePage page.
@@ -18,7 +19,7 @@ import {Status, User} from "../../interfaces/user";
 export class ProfilePage {
   user: User = {nick: '', status: Status.Online, active: true, email: '', uid: ''};
   status = Status;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public toastCtrl: ToastController, public camera: Camera) {
     this.authService.getStatus().subscribe((data) => {
       this.userService.getById(data.uid).valueChanges().subscribe((user: User) => {
         console.log(user);
@@ -41,6 +42,26 @@ export class ProfilePage {
     }).catch((error) => {
       console.log(error);
     });
+  }
+  async takePicture(source) {
+    try {
+      let cameraOptions: CameraOptions = {
+        quality: 50,
+        targetWidth: 800,
+        targetHeight: 800,
+        destinationType: this.camera.DestinationType.DATA_URL,
+        encodingType: this.camera.EncodingType.JPEG,
+        mediaType: this.camera.MediaType.PICTURE,
+        correctOrientation: true,
+        allowEdit: true
+      };
+      cameraOptions.sourceType = (source == 'camera') ?  this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.PHOTOLIBRARY;
+      const result = await this.camera.getPicture(cameraOptions);
+      const image = `data:image/jpeg;base64,${result}`;
+      console.log(image);
+    } catch (e) {
+      console.error(e);
+    }
   }
 
 }

@@ -32,10 +32,10 @@
       </ion-col>
       <ion-col col-6>
         <a ion-button>
-          <ion-icon name="camera"></ion-icon>
+          <ion-icon name="camera" (click)="takePicture('camera')"></ion-icon>
         </a>
         <a ion-button>
-          <ion-icon name="images"></ion-icon>
+          <ion-icon name="images" (click)="takePicture('album')"></ion-icon>
         </a>
       </ion-col>
     </ion-row>

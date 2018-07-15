@@ -18,6 +18,7 @@ import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AuthService} from "../services/auth";
 import {ProfilePage} from "../pages/profile/profile";
+import {Camera} from "@ionic-native/camera";
 export const firebaseConfig = {
   apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
   authDomain: 'msnalive2.firebaseapp.com',
@@ -58,7 +59,8 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserService,
-    AuthService
+    AuthService,
+    Camera
   ]
 })
 export class AppModule {}
