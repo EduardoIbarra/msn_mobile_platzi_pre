@@ -9,7 +9,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content [ngClass]="{'shaker': shake}">
+<ion-content [ngClass]="{'shaker': shake}" class="backgroundAmsnImg">
   <div class="bgWhite" margin padding>
       <div class="messageGroup" *ngFor="let m of conversation">
         <div *ngIf="m.type == 'text'">

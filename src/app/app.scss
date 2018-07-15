@@ -100,3 +100,13 @@
   90% { transform: translate(1px, 2px) rotate(0deg); }
   100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
+.toolbar-background-md, .toolbar-background {
+  border: 1px solid #9dd8f4 !important;
+  background: #3bb2ea;
+}
+.bar-button-default-md, .bar-button-clear-md-default, .bar-button-md-default, .bar-button-default, .bar-button-clear-default, .bar-button-default {
+  color: white !important;
+}
+.toolbar-title-md, .toolbar-title {
+  color: white !important;
+}
