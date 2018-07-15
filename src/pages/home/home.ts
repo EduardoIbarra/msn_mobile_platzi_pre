@@ -27,6 +27,7 @@ export class HomePage {
     this.authService.getStatus().subscribe((result) => {
       this.userService.getById(result.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
+        this.user.friends = Object.keys(this.user.friends).map(key => this.user.friends[key]);
       });
     });
   }

@@ -33,14 +33,14 @@
     <ion-input type="search" id="searchField" placeholder="Busca entre tus Contactos" [(ngModel)]="query"></ion-input>
   </div>
 
-  <div *ngIf="users">
+  <div *ngIf="user && user.friends">
     <div>
       <fa name="chevron-down"></fa>
-      <b>Amigos ({{users.length}}/{{users.length}})</b>
+      <b>Amigos ({{user.friends.length}}/{{user.friends.length}})</b>
     </div>
-    <div class="contact-list-item" *ngFor="let user of users | search: query" (click)="goToConversation(user)">
+    <div class="contact-list-item" *ngFor="let user of user.friends | search: query" (click)="goToConversation(user)">
       <img src="assets/img/{{getIconByStatus(user.status)}}" class="status">
-      <b>{{user.nick}}</b> <i class="msnicon brb"></i>
+      <b>{{user}}</b> <i class="msnicon brb"></i>
       <small *ngIf="user.status">{{user.status}}</small>
     </div>
   </div>
