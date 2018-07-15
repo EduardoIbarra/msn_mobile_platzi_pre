@@ -22,6 +22,7 @@ import {Camera} from "@ionic-native/camera";
 import {AngularFireStorageModule} from "angularfire2/storage";
 import {Geolocation} from "@ionic-native/geolocation";
 import {HttpClientModule} from "@angular/common/http";
+import {ConversationService} from "../services/conversation";
 export const firebaseConfig = {
   apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
   authDomain: 'msnalive2.firebaseapp.com',
@@ -66,7 +67,8 @@ export const firebaseConfig = {
     UserService,
     AuthService,
     Camera,
-    Geolocation
+    Geolocation,
+    ConversationService
   ]
 })
 export class AppModule {}

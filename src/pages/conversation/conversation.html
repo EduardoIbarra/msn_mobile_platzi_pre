@@ -3,8 +3,8 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title *ngIf="user">
-      <span class="userName">{{user.name}}</span> ({{user.status}})
+    <ion-title *ngIf="friend">
+      <span class="userName">{{friend.nick}}</span> ({{friend.status}})
     </ion-title>
   </ion-navbar>
 </ion-header>
@@ -39,9 +39,9 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-input type="text" class="footbarInput" autofocus></ion-input>
+    <ion-input type="text" class="footbarInput" autofocus (keyup.enter)="sendMessage()" [(ngModel)]="message"></ion-input>
     <ion-buttons end>
-      <button ion-button icon-only color="royal">
+      <button ion-button icon-only color="royal" (click)="sendMessage()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>
