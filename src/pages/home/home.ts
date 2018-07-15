@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import {AlertController, NavController} from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import {ConversationPage} from "../conversation/conversation";
 import {UserService} from "../../services/user";
 import {Status, User} from "../../interfaces/user";
+import {RequestService} from "../../services/request";
+import {AuthService} from "../../services/auth";
 
 @Component({
   selector: 'page-home',
@@ -13,13 +15,19 @@ export class HomePage {
   users: User[];
   query: string;
   status = Status;
-  constructor(public navCtrl: NavController, public userService: UserService) {
+  user: User;
+  constructor(public navCtrl: NavController, public userService: UserService, public alertCtrl: AlertController, public requestService: RequestService, public authService: AuthService) {
     const usersObservable = this.userService.get();
     usersObservable.valueChanges().subscribe((data: User[]) => {
       this.users = data;
     }, (error) => {
       alert('Ocurrió un error');
       console.log(error);
+    });
+    this.authService.getStatus().subscribe((result) => {
+      this.userService.getById(result.uid).valueChanges().subscribe((user: User) => {
+        this.user = user;
+      });
     });
   }
 
@@ -51,5 +59,35 @@ export class HomePage {
     }
     return icon;
   }
-
+  sendRequest() {
+    const prompt = this.alertCtrl.create({
+      title: 'Agregar Amigo',
+      message: "Ingresa el email del amigo que deseas agregar. ¡Le enviaremos tu solicitud!",
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email'
+        },
+      ],
+      buttons: [
+        {text: 'Cancel',
+          handler: data => {
+            console.log(data);
+          }
+        },
+        {text: 'Save',
+          handler: data => {
+            const request = {
+              timestamp: Date.now(),
+              receiver_email: data.email,
+              sender: this.user,
+              status: 'pending'
+            };
+            this.requestService.createRequest(request);
+          }
+        }
+      ]
+    });
+    prompt.present();
+  }
 }
