@@ -21,6 +21,7 @@ import {ProfilePage} from "../pages/profile/profile";
 import {Camera} from "@ionic-native/camera";
 import {AngularFireStorageModule} from "angularfire2/storage";
 import {Geolocation} from "@ionic-native/geolocation";
+import {HttpClientModule} from "@angular/common/http";
 export const firebaseConfig = {
   apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
   authDomain: 'msnalive2.firebaseapp.com',
@@ -46,7 +47,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

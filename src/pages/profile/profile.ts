@@ -5,6 +5,7 @@ import {UserService} from "../../services/user";
 import {Status, User} from "../../interfaces/user";
 import {Camera, CameraOptions} from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
+import {HttpClient} from "@angular/common/http";
 
 /**
  * Generated class for the ProfilePage page.
@@ -21,7 +22,7 @@ export class ProfilePage {
   user: User = {nick: '', status: Status.Online, active: true, email: '', uid: ''};
   status = Status;
   currentPictureId: any = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public toastCtrl: ToastController, public camera: Camera, public geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public toastCtrl: ToastController, public camera: Camera, public geolocation: Geolocation, public httpClient: HttpClient) {
     this.authService.getStatus().subscribe((data) => {
       this.userService.getById(data.uid).valueChanges().subscribe((user: User) => {
         console.log(user);
@@ -82,7 +83,11 @@ export class ProfilePage {
   }
   getLocation() {
     this.geolocation.getCurrentPosition().then((resp) => {
-      console.log(resp);
+      this.httpClient.get('http://maps.googleapis.com/maps/api/geocode/json?latlng='+resp.coords.latitude+','+resp.coords.longitude+'&sensor=true/false').subscribe((data: any) => {
+        console.log(data.results[0]);
+      }, (error) => {
+        console.log(error);
+      });
     }).catch((error) => {
       console.log('Error getting location', error);
     });
