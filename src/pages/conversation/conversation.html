@@ -9,22 +9,25 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content [ngClass]="{'shaker': shake}">
   <div class="bgWhite" margin padding>
       <div class="messageGroup" *ngFor="let m of conversation">
-          <div>
-            {{getUserNickById(m.sender)}} dice: <br />
-            <ul>
-              <li>{{m.content}}</li>
-            </ul>
-          </div>
+        <div *ngIf="m.type == 'text'">
+          {{getUserNickById(m.sender)}} dice: <br />
+          <ul>
+            <li>{{m.content}}</li>
+          </ul>
+        </div>
+        <div *ngIf="m.type == 'zumbido'" class="martobo10">
+          {{getUserNickById(m.sender)}} envió un zumbido <br />
+        </div>
       </div>
   </div>
 
   <ion-fab right middle>
     <button ion-fab><ion-icon name="send"></ion-icon></button>
     <ion-fab-list side="top">
-      <button outline ion-fab>
+      <button outline ion-fab (click)="sendZumbido()">
         <ion-label>Enviar Zumbido</ion-label>
         <img src="assets/img/zumbido.png" alt="">
       </button>

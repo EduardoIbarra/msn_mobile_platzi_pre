@@ -22,6 +22,7 @@ export class ConversationPage {
   ids: any[] = [];
   message: string = '';
   conversation: any;
+  shake:boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserService, public authService: AuthService, public conversationService: ConversationService) {
     this.friend = this.navParams.get('data');
     this.authService.getStatus().subscribe((result) => {
@@ -45,9 +46,30 @@ export class ConversationPage {
       type: 'text',
       content: this.message.replace(/\n$/, '')
     };
+    const audio = new Audio('assets/sound/new_message.m4a');
+    audio.play();
     this.conversationService.add(messageObject).then(() => {
     });
     this.message = '';
+  }
+  doZumbido() {
+    const audio = new Audio('assets/sound/zumbido.m4a');
+    audio.play();
+    this.shake = true;
+    window.setTimeout(() => {
+      this.shake = false;
+    }, 800);
+  }
+  sendZumbido() {
+    this.doZumbido();
+    const messageObject: any = {
+      uid: this.ids.join('||'),
+      timestamp: Date.now(),
+      sender: this.user.uid,
+      receiver: this.friend.uid,
+      type: 'zumbido',
+    };
+    this.conversationService.add(messageObject);
   }
   getConversation() {
     this.conversationService.getById(this.ids.join('||')).valueChanges().subscribe((data) => {
