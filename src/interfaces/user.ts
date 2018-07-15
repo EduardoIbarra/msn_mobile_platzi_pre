@@ -12,4 +12,5 @@ export interface User {
   status: Status;
   uid: any;
   email: string;
+  avatar_url?: string;
 }

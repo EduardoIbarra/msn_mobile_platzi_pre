@@ -19,6 +19,7 @@ import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AuthService} from "../services/auth";
 import {ProfilePage} from "../pages/profile/profile";
 import {Camera} from "@ionic-native/camera";
+import {AngularFireStorageModule} from "angularfire2/storage";
 export const firebaseConfig = {
   apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
   authDomain: 'msnalive2.firebaseapp.com',
@@ -43,7 +44,8 @@ export const firebaseConfig = {
     AngularFontAwesomeModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

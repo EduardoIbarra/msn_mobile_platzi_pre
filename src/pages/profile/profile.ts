@@ -19,6 +19,7 @@ import {Camera, CameraOptions} from '@ionic-native/camera';
 export class ProfilePage {
   user: User = {nick: '', status: Status.Online, active: true, email: '', uid: ''};
   status = Status;
+  currentPictureId: any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public toastCtrl: ToastController, public camera: Camera) {
     this.authService.getStatus().subscribe((data) => {
       this.userService.getById(data.uid).valueChanges().subscribe((user: User) => {
@@ -58,7 +59,22 @@ export class ProfilePage {
       cameraOptions.sourceType = (source == 'camera') ?  this.camera.PictureSourceType.CAMERA : this.camera.PictureSourceType.PHOTOLIBRARY;
       const result = await this.camera.getPicture(cameraOptions);
       const image = `data:image/jpeg;base64,${result}`;
-      console.log(image);
+      this.currentPictureId = Date.now();
+      this.userService.uploadPicture(this.currentPictureId + '.jpg', image).then((data) => {
+        this.userService.getDownloadURL(this.currentPictureId + '.jpg').subscribe((url) => {
+          this.user.avatar_url = url;
+          let toast = this.toastCtrl.create({
+            message: 'Foto subida',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+        }, (error) => {
+          console.log(error);
+        });
+      }).catch((error) => {
+        console.log(error);
+      });
     } catch (e) {
       console.error(e);
     }
