@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {AlertController, NavController} from 'ionic-angular';
+import {AlertController, NavController, ToastController} from 'ionic-angular';
 import {LoginPage} from "../login/login";
 import {ConversationPage} from "../conversation/conversation";
 import {UserService} from "../../services/user";
@@ -16,7 +16,7 @@ export class HomePage {
   query: string;
   status = Status;
   user: User;
-  constructor(public navCtrl: NavController, public userService: UserService, public alertCtrl: AlertController, public requestService: RequestService, public authService: AuthService) {
+  constructor(public navCtrl: NavController, public userService: UserService, public alertCtrl: AlertController, public requestService: RequestService, public authService: AuthService, public toastCtrl: ToastController) {
     const usersObservable = this.userService.get();
     usersObservable.valueChanges().subscribe((data: User[]) => {
       this.users = data;
@@ -83,7 +83,16 @@ export class HomePage {
               sender: this.user,
               status: 'pending'
             };
-            this.requestService.createRequest(request);
+            this.requestService.createRequest(request).then((data) => {
+              let toast = this.toastCtrl.create({
+                message: 'Solicitud Enviaoda',
+                duration: 3000,
+                position: 'bottom'
+              });
+              toast.present();
+            }).catch((error) => {
+              console.log(error);
+            });
           }
         }
       ]
