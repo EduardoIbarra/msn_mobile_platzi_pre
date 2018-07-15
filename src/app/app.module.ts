@@ -20,6 +20,7 @@ import {AuthService} from "../services/auth";
 import {ProfilePage} from "../pages/profile/profile";
 import {Camera} from "@ionic-native/camera";
 import {AngularFireStorageModule} from "angularfire2/storage";
+import {Geolocation} from "@ionic-native/geolocation";
 export const firebaseConfig = {
   apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
   authDomain: 'msnalive2.firebaseapp.com',
@@ -62,7 +63,8 @@ export const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserService,
     AuthService,
-    Camera
+    Camera,
+    Geolocation
   ]
 })
 export class AppModule {}

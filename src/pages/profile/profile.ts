@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth";
 import {UserService} from "../../services/user";
 import {Status, User} from "../../interfaces/user";
 import {Camera, CameraOptions} from '@ionic-native/camera';
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the ProfilePage page.
@@ -20,7 +21,7 @@ export class ProfilePage {
   user: User = {nick: '', status: Status.Online, active: true, email: '', uid: ''};
   status = Status;
   currentPictureId: any = {};
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public toastCtrl: ToastController, public camera: Camera) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public toastCtrl: ToastController, public camera: Camera, public geolocation: Geolocation) {
     this.authService.getStatus().subscribe((data) => {
       this.userService.getById(data.uid).valueChanges().subscribe((user: User) => {
         console.log(user);
@@ -78,6 +79,13 @@ export class ProfilePage {
     } catch (e) {
       console.error(e);
     }
+  }
+  getLocation() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      console.log(resp);
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
   }
 
 }
