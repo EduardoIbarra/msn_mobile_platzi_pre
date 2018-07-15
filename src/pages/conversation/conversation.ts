@@ -24,13 +24,18 @@ export class ConversationPage {
   conversation: any;
   shake:boolean = false;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserService, public authService: AuthService, public conversationService: ConversationService) {
-    this.friend = this.navParams.get('data');
-    this.authService.getStatus().subscribe((result) => {
-      this.userService.getById(result.uid).valueChanges().subscribe((user: User) => {
-        this.user = user;
-        this.ids = [this.user.uid, this.friend.uid].sort();
-        this.getConversation();
-      })
+    const friend_id = this.navParams.get('data');
+    this.userService.getById(friend_id).valueChanges().subscribe((data: User) => {
+      this.friend = data;
+      this.authService.getStatus().subscribe((result) => {
+        this.userService.getById(result.uid).valueChanges().subscribe((user: User) => {
+          this.user = user;
+          this.ids = [this.user.uid, this.friend.uid].sort();
+          this.getConversation();
+        })
+      });
+    }, (error) => {
+      console.log(error);
     });
   }
 

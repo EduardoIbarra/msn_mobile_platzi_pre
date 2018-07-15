@@ -1,0 +1,5 @@
+<div *ngIf="user">
+  <img src="assets/img/{{getIconByStatus(user.status)}}" class="status">
+  <b>{{user.nick}}</b> <i class="msnicon brb"></i>
+  <small *ngIf="user.status">{{user.status}}</small>
+</div>

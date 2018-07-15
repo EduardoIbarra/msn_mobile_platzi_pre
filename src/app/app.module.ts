@@ -24,6 +24,7 @@ import {Geolocation} from "@ionic-native/geolocation";
 import {HttpClientModule} from "@angular/common/http";
 import {ConversationService} from "../services/conversation";
 import {RequestService} from "../services/request";
+import {ComponentsModule} from "../components/components.module";
 export const firebaseConfig = {
   apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
   authDomain: 'msnalive2.firebaseapp.com',
@@ -50,7 +51,8 @@ export const firebaseConfig = {
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

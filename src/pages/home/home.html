@@ -39,9 +39,8 @@
       <b>Amigos ({{user.friends.length}}/{{user.friends.length}})</b>
     </div>
     <div class="contact-list-item" *ngFor="let user of user.friends | search: query" (click)="goToConversation(user)">
-      <img src="assets/img/{{getIconByStatus(user.status)}}" class="status">
-      <b>{{user}}</b> <i class="msnicon brb"></i>
-      <small *ngIf="user.status">{{user.status}}</small>
+      <friend [user_id]="user"></friend>
+
     </div>
   </div>
 </ion-content>
