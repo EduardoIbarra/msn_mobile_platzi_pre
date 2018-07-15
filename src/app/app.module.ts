@@ -17,6 +17,7 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AuthService} from "../services/auth";
+import {ProfilePage} from "../pages/profile/profile";
 export const firebaseConfig = {
   apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
   authDomain: 'msnalive2.firebaseapp.com',
@@ -32,7 +33,8 @@ export const firebaseConfig = {
     ListPage,
     LoginPage,
     ConversationPage,
-    SearchPipe
+    SearchPipe,
+    ProfilePage
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,8 @@ export const firebaseConfig = {
     HomePage,
     ListPage,
     LoginPage,
-    ConversationPage
+    ConversationPage,
+    ProfilePage
   ],
   providers: [
     StatusBar,

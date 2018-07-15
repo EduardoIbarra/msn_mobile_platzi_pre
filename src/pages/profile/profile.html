@@ -1,5 +1,5 @@
 <!--
-  Generated template for the ProfilePage page.
+  Generated template for the SettingsPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,12 +7,63 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>profile</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Perfil</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="backgroundAmsnImg">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6 offset-3>
+        <div class="avatarFrameonline">
+          <img src="assets/img/generic_avatar.png" class="avatarImage img-fluid">
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row class="marto15">
+      <ion-col col-6>
+        <br />
+        <span>Cambiar Foto</span>
+      </ion-col>
+      <ion-col col-6>
+        <a ion-button>
+          <ion-icon name="camera"></ion-icon>
+        </a>
+        <a ion-button>
+          <ion-icon name="images"></ion-icon>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <ion-list>
+    <ion-item>
+      <ion-label fixed>Nick</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Subnick</ion-label>
+      <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input disabled type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select >
+        <ion-option value="online">Conectado</ion-option>
+        <ion-option value="away">Ausente</ion-option>
+        <ion-option value="busy">Ocupado</ion-option>
+        <ion-option value="appear_offline">Desconectado</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <a ion-button full>Guardar</a>
 </ion-content>
