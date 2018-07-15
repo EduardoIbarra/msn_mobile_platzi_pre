@@ -9,7 +9,13 @@ export class UserService {
   get() {
     return this.angularFireDataBase.list('users/');
   }
+  getById(uid) {
+    return this.angularFireDataBase.object('users/' + uid);
+  }
   add(user: User) {
+    return this.angularFireDataBase.object('/users/' + user.uid).set(user);
+  }
+  edit(user: User) {
     return this.angularFireDataBase.object('/users/' + user.uid).set(user);
   }
 }

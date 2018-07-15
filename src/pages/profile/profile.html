@@ -44,26 +44,23 @@
   <ion-list>
     <ion-item>
       <ion-label fixed>Nick</ion-label>
-      <ion-input type="text"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label fixed>Subnick</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="user.nick"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label fixed>Email</ion-label>
-      <ion-input disabled type="email"></ion-input>
+      <ion-input disabled type="email" [(ngModel)]="user.email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Status</ion-label>
-      <ion-select >
-        <ion-option value="online">Conectado</ion-option>
-        <ion-option value="away">Ausente</ion-option>
-        <ion-option value="busy">Ocupado</ion-option>
-        <ion-option value="appear_offline">Desconectado</ion-option>
+      <ion-select [(ngModel)]="user.status">
+        <ion-option value="{{status.Online}}">Conectado</ion-option>
+        <ion-option value="{{status.Away}}">Ausente</ion-option>
+        <ion-option value="{{status.Busy}}">Ocupado</ion-option>
+        <ion-option value="{{status.AppearOffline}}">Aparecer como Desconectado</ion-option>
+        <ion-option value="{{status.Offline}}">Desconectado</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
 
-  <a ion-button full>Guardar</a>
+  <a ion-button full (click)="saveProfile()">Guardar</a>
 </ion-content>

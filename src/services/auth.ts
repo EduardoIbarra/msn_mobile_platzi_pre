@@ -16,4 +16,7 @@ export class AuthService {
   facebookAuth() {
     return this.firebaseAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
   }
+  getStatus() {
+    return this.firebaseAuth.authState;
+  }
 }
