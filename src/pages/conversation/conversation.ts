@@ -21,13 +21,14 @@ export class ConversationPage {
   user: User;
   ids: any[] = [];
   message: string = '';
+  conversation: any;
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UserService, public authService: AuthService, public conversationService: ConversationService) {
     this.friend = this.navParams.get('data');
     this.authService.getStatus().subscribe((result) => {
       this.userService.getById(result.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
         this.ids = [this.user.uid, this.friend.uid].sort();
-        console.log('me', this.user);
+        this.getConversation();
       })
     });
   }
@@ -48,6 +49,18 @@ export class ConversationPage {
     });
     this.message = '';
   }
-
-
+  getConversation() {
+    this.conversationService.getById(this.ids.join('||')).valueChanges().subscribe((data) => {
+      this.conversation = data;
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  getUserNickById(id) {
+    if (id === this.friend.uid) {
+      return this.friend.nick;
+    } else if (id === this.user.uid) {
+      return this.user.nick;
+    }
+  }
 }

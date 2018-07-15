@@ -11,11 +11,14 @@
 
 <ion-content>
   <div class="bgWhite" margin padding>
-    <div class="messageGroup">
-      <ng-container>
-
-      </ng-container>
-    </div>
+      <div class="messageGroup" *ngFor="let m of conversation">
+          <div>
+            {{getUserNickById(m.sender)}} dice: <br />
+            <ul>
+              <li>{{m.content}}</li>
+            </ul>
+          </div>
+      </div>
   </div>
 
   <ion-fab right middle>
