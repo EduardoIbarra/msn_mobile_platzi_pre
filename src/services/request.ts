@@ -8,4 +8,12 @@ export class RequestService {
     const cleanEmail = request.receiver_email.replace('.', ',');
     return this.angularFireDatabase.object('requests/' + cleanEmail + '/' + request.sender.uid).set(request);
   }
+  setRequestStatus(request, status) {
+    const cleanEmail = request.receiver_email.replace('.', ',');
+    return this.angularFireDatabase.object('request/' + cleanEmail + '/' + request.sender.uid + '/status').set(status);
+  }
+  getRequestsForEmail(email) {
+    const cleanEmail = email.replace('.', ',');
+    return this.angularFireDatabase.list('requests/' + cleanEmail);
+  }
 }
