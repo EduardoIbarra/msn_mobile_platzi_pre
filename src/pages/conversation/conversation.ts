@@ -32,7 +32,7 @@ export class ConversationPage {
       this.userService.getById(data.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
         let idsArray = [this.user.uid, this.friend.uid].sort();
-        this.conversationId = idsArray.join('||');
+        this.conversationId = idsArray.join('|');
         this.getConversation();
       }, (error) => {
         console.log(error);
@@ -58,7 +58,7 @@ export class ConversationPage {
       sender: this.user.uid,
       receiver: this.friend.uid,
       type: 'text',
-      content: this.message
+      text: this.message
     };
     this.conversationService.add(messageObject).then((data) => {
       this.message = '';

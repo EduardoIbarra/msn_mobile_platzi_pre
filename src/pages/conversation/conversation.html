@@ -38,7 +38,7 @@
 
   <div class="message" *ngFor="let m of conversation">
     <div *ngIf="m.type === 'text'">
-      <b>{{getUserNickById(m.sender)}}</b> dice: {{m.content}}
+      <b>{{getUserNickById(m.sender)}}</b> dice: {{m.text}}
     </div>
     <div *ngIf="m.type === 'zumbido'">
       <b>{{getUserNickById(m.sender)}}</b> ha enviado un zumbido
