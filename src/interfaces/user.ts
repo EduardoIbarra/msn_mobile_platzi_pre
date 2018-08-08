@@ -13,4 +13,5 @@ export interface User {
   uid: any;
   email: string;
   avatar?: string;
+  friends?: any;
 }

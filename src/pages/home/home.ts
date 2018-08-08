@@ -33,6 +33,8 @@ export class HomePage {
       }
       this.userService.getById(session.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
+        this.user.friends = Object.keys(this.user.friends).map(key => this.user.friends[key]);
+        console.log(this.user);
       }, (error) => {
         console.log(error);
       })
