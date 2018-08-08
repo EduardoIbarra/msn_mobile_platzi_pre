@@ -79,5 +79,40 @@ export class LoginPage {
   backToHome() {
     this.navCtrl.pop();
   }
-
+  loginWithFacebook() {
+    this.authService.facebookLogin().then((data:any) => {
+      //user.uid additionalUserInfo.isNewUser additionalUserInfo.picture.data.url additionalUserInfo.first_name additionalUserInfo.last_name additionalUserInfo.profile.email
+      if(data.additionalUserInfo.isNewUser) {
+        const user:User = {
+          nick: data.additionalUserInfo.profile.first_name + ' ' + data.additionalUserInfo.profile.last_name,
+          active: true,
+          status: Status.Online,
+          uid: data.user.uid,
+          email: data.additionalUserInfo.profile.email
+        };
+        this.userService.add(user).then((data) => {
+          let toast = this.toastCtrl.create({
+            message: 'Bienvenido (Registro Exitoso)',
+            duration: 3000,
+            position: 'bottom'
+          });
+          toast.present();
+          this.navCtrl.setRoot(HomePage);
+        }).catch((error) => {
+          console.log(error);
+        });
+      } else {
+        let toast = this.toastCtrl.create({
+          message: 'Bienvenido',
+          duration: 3000,
+          position: 'bottom'
+        });
+        toast.present();
+        this.navCtrl.setRoot(HomePage);
+      }
+      console.log(data);
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
 }

@@ -1,18 +1,63 @@
-<!--
-  Generated template for the ProfilePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
   <ion-navbar>
-    <ion-title>profile</ion-title>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Profile
+    </ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content padding class="backgroundAmsnImg bposy0">
+  <div id="avatarLogin">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 offset-3>
+          <div class="avatarFrameoffline">
+            <img *ngIf="user" src="{{user.avatar || 'assets/img/generic_avatar.png'}}" class="avatarImage img-fluid">
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <button ion-button (click)="takePicture('camera')">
+      <ion-icon name="camera"></ion-icon>
+    </button>
+    <button ion-button (click)="takePicture('album')">
+      <ion-icon name="images"></ion-icon>
+    </button>
+    <button ion-button (click)="getLocation()">
+      <ion-icon name="navigate"></ion-icon>
+    </button>
+    <div *ngIf="location">{{location | json}}</div>
+  </div>
+  <ion-list *ngIf="user">
+    <ion-item>
+      <ion-label fixed>Nick</ion-label>
+      <ion-input type="text" [(ngModel)]="user.nick"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Subnick</ion-label>
+      <ion-input type="text" [(ngModel)]="user.subnick"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label fixed>Email</ion-label>
+      <ion-input type="email" disabled [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Status</ion-label>
+      <ion-select [(ngModel)]="user.status">
+        <ion-option value="Online">Conectado</ion-option>
+        <ion-option value="Away">Ausente</ion-option>
+        <ion-option value="Busy">Ocupado</ion-option>
+        <ion-option value="AppearOffline">Desconectado</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <div padding>
+    <button ion-button (click)="saveData()" block>Guardar</button>
 
-<ion-content padding>
-
+  </div>
 </ion-content>

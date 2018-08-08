@@ -39,9 +39,9 @@
 
 <ion-footer>
   <ion-toolbar>
-    <ion-input type="text" class="footbarInput" autofocus></ion-input>
+    <ion-input [(ngModel)]="message" type="text" class="footbarInput" (keyup.enter)="sendMessage()" autofocus></ion-input>
     <ion-buttons end>
-      <button ion-button icon-only color="royal">
+      <button ion-button icon-only color="royal" (click)="sendMessage()">
         <ion-icon name="send"></ion-icon>
       </button>
     </ion-buttons>

@@ -17,13 +17,19 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireDatabaseModule} from 'angularfire2/database';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AuthService} from "../services/auth";
+import {ProfilePageModule} from "../pages/profile/profile.module";
+import {AngularFireStorageModule} from "angularfire2/storage";
+import {Camera} from "@ionic-native/camera";
+import {Geolocation} from "@ionic-native/geolocation";
+import {HttpClientModule} from "@angular/common/http";
+import {ConversationService} from "../services/conversation";
 export const firebaseConfig = {
-  apiKey: 'AIzaSyB1WZRwZRHy9L6jwgqYgOlTvf7yPCC33hQ',
-  authDomain: 'msnalive2.firebaseapp.com',
-  databaseURL: 'https://msnalive2.firebaseio.com',
-  projectId: 'msnalive2',
-  storageBucket: 'msnalive2.appspot.com',
-  messagingSenderId: '18390215590'
+  apiKey: "AIzaSyDkFgZLQg_IXEqO7mJTO_03atZVaihnXoA",
+  authDomain: "platzinger-6a959.firebaseapp.com",
+  databaseURL: "https://platzinger-6a959.firebaseio.com",
+  projectId: "platzinger-6a959",
+  storageBucket: "platzinger-6a959.appspot.com",
+  messagingSenderId: "264241877711"
 };
 @NgModule({
   declarations: [
@@ -40,7 +46,10 @@ export const firebaseConfig = {
     AngularFontAwesomeModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    ProfilePageModule,
+    AngularFireStorageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -55,7 +64,10 @@ export const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserService,
-    AuthService
+    AuthService,
+    Camera,
+    Geolocation,
+    ConversationService
   ]
 })
 export class AppModule {}
