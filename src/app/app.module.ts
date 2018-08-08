@@ -25,6 +25,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {ConversationService} from "../services/conversation";
 import {Vibration} from "@ionic-native/vibration";
 import {RequestService} from "../services/request";
+import {ComponentsModule} from "../components/components.module";
 export const firebaseConfig = {
   apiKey: "AIzaSyDkFgZLQg_IXEqO7mJTO_03atZVaihnXoA",
   authDomain: "platzinger-6a959.firebaseapp.com",
@@ -51,7 +52,8 @@ export const firebaseConfig = {
     AngularFireAuthModule,
     ProfilePageModule,
     AngularFireStorageModule,
-    HttpClientModule
+    HttpClientModule,
+    ComponentsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
