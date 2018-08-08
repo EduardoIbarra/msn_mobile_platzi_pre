@@ -7,4 +7,7 @@ export class ConversationService {
   add(conversation) {
     return this.angularFireDatabase.object('conversations/' + conversation.uid + '/' + conversation.timestamp).set(conversation);
   }
+  getById(uid) {
+    return this.angularFireDatabase.list('conversations/' + uid);
+  }
 }

@@ -5,6 +5,7 @@ import {User} from "../../interfaces/user";
 import {AuthService} from "../../services/auth";
 import {UserService} from "../../services/user";
 import {ConversationService} from "../../services/conversation";
+import {Vibration} from "@ionic-native/vibration";
 
 /**
  * Generated class for the ConversationPage page.
@@ -22,7 +23,9 @@ export class ConversationPage {
   friend: User;
   conversationId: any;
   message: string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public conversationService: ConversationService) {
+  conversation: any;
+  shake: boolean;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public userService: UserService, public conversationService: ConversationService, public vibration: Vibration) {
     this.friend = this.navParams.get('data');
     console.log(this.user);
     this.authService.getStatus().subscribe((data) => {
@@ -30,6 +33,7 @@ export class ConversationPage {
         this.user = user;
         let idsArray = [this.user.uid, this.friend.uid].sort();
         this.conversationId = idsArray.join('||');
+        this.getConversation();
       }, (error) => {
         console.log(error);
       });
@@ -61,5 +65,42 @@ export class ConversationPage {
     }).catch((error) => {
       console.log(error);
     });
+  }
+  doZumbido() {
+    const audio = new Audio('assets/sound/zumbido.m4a');
+    audio.play();
+    this.shake = true;
+    this.vibration.vibrate([200, 80, 150]);
+    window.setTimeout(() => {
+      this.shake = false;
+    }, 800);
+  }
+  sendZumbido() {
+    const messageObject: any = {
+      uid: this.conversationId,
+      timestamp: Date.now(),
+      sender: this.user.uid,
+      receiver: this.friend.uid,
+      type: 'zumbido'
+    };
+    this.conversationService.add(messageObject).then((data) => {
+      this.doZumbido();
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+  getConversation() {
+    this.conversationService.getById(this.conversationId).valueChanges().subscribe((data) => {
+      this.conversation = data;
+    }, (error) => {
+      console.log(error);
+    })
+  }
+  getUserNickById(uid) {
+    if (uid === this.friend.uid) {
+      return this.friend.nick;
+    } else {
+      return this.user.nick;
+    }
   }
 }
