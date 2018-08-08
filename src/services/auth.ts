@@ -20,4 +20,7 @@ export class AuthService {
   getStatus() {
     return this.firebaseAuth.authState;
   }
+  logout() {
+    return this.firebaseAuth.auth.signOut();
+  }
 }

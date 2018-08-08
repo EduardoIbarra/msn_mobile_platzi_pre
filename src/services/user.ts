@@ -25,4 +25,8 @@ export class UserService {
   getDownloadURL(picture_name) {
     return this.angularFireStorage.ref('pictures/' + picture_name).getDownloadURL();
   }
+  addFriend(uid, friendId) {
+    this.angularFireDataBase.object('users/' + uid + '/friends/' + friendId).set(friendId);
+    return this.angularFireDataBase.object('users/' + friendId + '/friends/' + uid).set(uid);
+  }
 }

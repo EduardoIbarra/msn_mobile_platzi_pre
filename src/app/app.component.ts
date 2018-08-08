@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import {AlertController, ModalController, Nav, Platform, ToastController} from 'ionic-angular';
+import {AlertController, App, App, ModalController, Nav, NavController, Platform, ToastController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -10,7 +10,6 @@ import {ProfilePage} from "../pages/profile/profile";
 import {UserService} from "../services/user";
 import {AuthService} from "../services/auth";
 import {RequestService} from "../services/request";
-import {User} from "firebase";
 import {User} from "../interfaces/user";
 
 @Component({
@@ -23,7 +22,9 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
   user: User;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private userService: UserService, private authService: AuthService, private requestService: RequestService, private modalController: ModalController, private alertController: AlertController, private toastController: ToastController) {
+  requests: any;
+  mailsShown: any = [];
+  constructor(private app: App, public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private userService: UserService, private authService: AuthService, private requestService: RequestService, private modalController: ModalController, private alertController: AlertController, private toastController: ToastController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -32,6 +33,12 @@ export class MyApp {
       { title: 'Profile', component: ProfilePage }
     ];
     this.authService.getStatus().subscribe((session) => {
+      if (!session) {
+        return;
+      }
+      if (!session.uid) {
+        return;
+      }
       this.userService.getById(session.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
         this.getFriendRequests();
@@ -56,8 +63,61 @@ export class MyApp {
   getFriendRequests() {
     this.requestService.getRequestsForEmail(this.user.email).valueChanges().subscribe((requests: any) => {
       console.log(requests);
+      this.requests = requests;
+      this.requests = this.requests.filter((r) => {
+        return r.status !== 'accepted' && r.status !== 'rejected';
+      });
+      this.requests.forEach((r) => {
+        if (this.mailsShown.indexOf(r.sender.email) === -1){
+          this.mailsShown.push(r.sender.email);
+          this.showRadio(r);
+        }
+      });
     }, (error) => {
       console.log(error);
     })
+  }
+  showRadio(r) {
+    let alert = this.alertController.create();
+    alert.setTitle('Solicitud de Amistad');
+    alert.setMessage(r.sender.nick + 'te ha enviado una solicitud, deseas aceptar?');
+    alert.addInput({
+      type: 'radio',
+      label: 'Claro',
+      value: 'yes',
+      checked: true
+    });
+    alert.addInput({
+      type: 'radio',
+      label: 'No',
+      value: 'no'
+    });
+    alert.addButton({
+      text: 'OK',
+      handler: data => {
+        if (data === 'yes') {
+          this.requestService.setRequestStatus(r, 'accepted').then((data) => {
+            this.userService.addFriend(this.user.uid, r.sender.uid);
+          }).catch((error) => {
+            console.log(error);
+          });
+        } else {
+          this.requestService.setRequestStatus(r, 'accepted').then((data) => {
+            console.log('Solicitud Rechazada');
+          }).catch((error) => {
+            console.log(error);
+          });
+        }
+      }
+    });
+    alert.present();
+  }
+
+  logout() {
+    this.authService.logout().then(() => {
+      this.app.getRootNav().setRoot(LoginPage);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }

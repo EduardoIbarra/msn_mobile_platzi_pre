@@ -25,6 +25,12 @@ export class HomePage {
       console.log(error);
     });
     this.authService.getStatus().subscribe((session) => {
+      if (!session) {
+        return;
+      }
+      if (!session.uid) {
+        return;
+      }
       this.userService.getById(session.uid).valueChanges().subscribe((user: User) => {
         this.user = user;
       }, (error) => {
